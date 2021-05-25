@@ -57,6 +57,11 @@ const Slider = (props) => {
     const isVertical = useRef(props.orientation === 'vertical');
     const [value] = useState(new Animated.Value(getBoundedValue(props.value || 0, props.maximumValue || 1, props.minimumValue || 0)));
     useEffect(() => {
+           setCurrentValue(props.value);
+           fireChangeEvent('onValueChange');
+        }, [props.value]);
+
+    useEffect(() => {
         containerSizeValue.current = containerSize;
     }, [containerSize]);
     useEffect(() => {
